@@ -30,6 +30,8 @@ jobs:
           command: |
             cd dist
             git init
+            git config user.email "joaopsimoes0@gmail.com"
+            git config user.email "joao-simoes"
             git checkout -b www-prod
             git add *
             git commit -m "CIRCLECI AUTOMATED DEPLOY"
