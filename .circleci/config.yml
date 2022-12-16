@@ -24,16 +24,22 @@ jobs:
           name: "install vue-cli-service"
           command: "sudo npm install -g @vue/cli-service"
       - run:
+          command: "cd dist"
+      - run:
           name: "build"
           command: "sudo npm run build"
-      - run: |
-          cd dist
-          git init
-          git checkout -b www-prod
-          git add *
-          git commit -m "CIRCLECI AUTOMATED DEPLOY"
-          git remote add origin git@github.com:joao-simoes/muse.git
-          git push origin www-prod
+      - run:
+          name: "build"
+          command: "sudo npm run build"
+      - run:
+          command: |
+            cd dist
+            git init
+            git checkout -b www-prod
+            git add *
+            git commit -m "CIRCLECI AUTOMATED DEPLOY"
+            git remote add origin git@github.com:joao-simoes/muse.git
+            git push origin www-prod
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
