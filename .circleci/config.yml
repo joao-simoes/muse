@@ -24,11 +24,6 @@ jobs:
           name: "install vue-cli-service"
           command: "sudo npm install -g @vue/cli-service"
       - run:
-          command: "cd dist"
-      - run:
-          name: "build"
-          command: "sudo npm run build"
-      - run:
           name: "build"
           command: "sudo npm run build"
       - run:
