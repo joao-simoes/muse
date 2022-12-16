@@ -16,10 +16,13 @@ jobs:
       - checkout
       - run:
           name: "install packages"
-          command: "sudo npm install -g npm"
+          command: "sudo npm install"
       - run:
           name: "install vue-cli"
           command: "sudo npm install -g @vue/cli"
+      - run:
+          name: "install vue-cli-service"
+          command: "sudo npm install -g @vue/cli-service"
       - run:
           name: "build"
           command: "sudo npm run build"
