@@ -16,20 +16,20 @@ jobs:
       - checkout
       - run:
           name: "install packages"
-          command: "sudo npm install -g npm"
+          command: "npm install -g npm"
       - run:
           name: "install vue-cli"
-          command: "sudo npm install -g @vue/cli"
+          command: "npm install -g @vue/cli"
       - run:
           name: "build"
-          command: "sudo npm run build"
+          command: "npm run build"
       - run: |
           cd dist
           git init
           git checkout -b www-prod
-          git remote add origin git@github.com:joao-simoes/muse.git
           git add *
           git commit -m "CIRCLECI AUTOMATED DEPLOY"
+          git remote add origin git@github.com:joao-simoes/muse.git
           git push origin www-prod
 
 # Invoke jobs via workflows
