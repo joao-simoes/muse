@@ -16,13 +16,13 @@ jobs:
       - checkout
       - run:
           name: "install packages"
-          command: "npm install -g npm"
+          command: "sudo npm install -g npm"
       - run:
           name: "install vue-cli"
-          command: "npm install -g @vue/cli"
+          command: "sudo npm install -g @vue/cli"
       - run:
           name: "build"
-          command: "npm run build"
+          command: "sudo npm run build"
       - run: |
           cd dist
           git init
