@@ -9,14 +9,25 @@ jobs:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
-      - image: node:18-alpine
+      - image: cimg/node:17.4.0
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
       - run:
+          name: "update npm"
+          command: "sudo npm install -g npm"
+      - run:
           name: "build"
-          command: "npm run build"
+          command: "sudo npm run build"
+      - run: |
+          cd dist
+          git init
+          git checkout -b www-prod
+          git remote add origin git@github.com:joao-simoes/muse.git
+          git add *
+          git commit -m "CIRCLECI AUTOMATED DEPLOY"
+          git push origin www-prod
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
