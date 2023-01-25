@@ -26,9 +26,13 @@
       </n-divider>
       <div class="row">
 
-        <ArtistCard v-for="artist in top" class="col-sm-4 my-2" :name="artist.name" :genres="artist.genres"
-          :popularity="artist.popularity" :rank="top.indexOf(artist) + 1" :imgSrc="artist.images[0].url"
-          :followers="artist.followers.total" />
+        <ArtistCard v-if="type == 'artists'" v-for="artist in top" class="col-12 col-md-6 col-lg-4 my-2"
+          :name="artist.name" :genres="artist.genres" :popularity="artist.popularity" :rank="top.indexOf(artist) + 1"
+          :imgSrc="artist.images[0].url" :followers="artist.followers.total" />
+
+        <TrackCard v-if="type == 'tracks'" v-for="track in top" class="col-12 col-md-6 col-lg-4 my-2" :name="track.name"
+          :releaseDate="track.album.release_date" :artist="track.artists[0].name" :album="track.album.name"
+          :rank="top.indexOf(artist) + 1" :imgSrc="track.album.images[0].url" />
 
       </div>
     </div>
@@ -43,6 +47,7 @@
 <script>
 import UserHeader from '../components/UserHeader.vue'
 import ArtistCard from '../components/ArtistCard.vue'
+import TrackCard from '../components/TrackCard.vue'
 import NowPlayingCard from '../components/NowPlayingCard.vue'
 import { NButton, NDivider } from 'naive-ui'
 
@@ -60,11 +65,13 @@ export default {
       trackAlbum: null,
       trackImg: null,
       trackArtist: null,
+      type: null
     }
   },
   components: {
     UserHeader,
     ArtistCard,
+    TrackCard,
     NowPlayingCard,
     NButton,
     NDivider
@@ -72,9 +79,9 @@ export default {
   methods: {
     fetchUserTop() {
       let amount = document.getElementById('amount').value
-      let type = document.getElementById('type').value
+      this.type = document.getElementById('type').value
 
-      fetch(`https://api.spotify.com/v1/me/top/${type}?limit=${amount}`, {
+      fetch(`https://api.spotify.com/v1/me/top/${this.type}?limit=${amount}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -188,5 +195,18 @@ select {
 .NowPlayingCard:hover {
   opacity: 100%;
   transition: 0.s ease-in-out;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .NowPlayingCard {
+    width: 90%;
+    position: fixed;
+    bottom: 20px;
+    right: 5%;
+    z-index: 100;
+    opacity: 40%;
+    transition: 0.2s ease-in-out;
+  }
 }
 </style>

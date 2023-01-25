@@ -4,7 +4,7 @@
   <div class="position-fixed w-100 text-center top-50 translate-middle-y">
     <h1>MUSE.</h1>
     <h3>WHAT AM I UP TO?</h3>
-    <a href="http://127.0.0.1:3100/login">
+    <a href="http://127.0.0.1:3100/login" class="m-auto">
       <img class="bttLogin mt-3" :src="require('../assets/btt_spotify.png')" alt="Login with Spotify">
     </a>
   </div>
@@ -57,7 +57,8 @@ export default {
 }
 
 h1 {
-  font-weight: 400;
+  font-size: 100px;
+  font-weight: 600;
 }
 
 h3 {
@@ -65,6 +66,6 @@ h3 {
 }
 
 .bttLogin {
-  width: 25%;
+  width: 20%;
 }
 </style>

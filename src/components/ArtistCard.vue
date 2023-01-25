@@ -7,9 +7,13 @@
                     <img :src="imgSrc" :alt="name">
                 </div>
                 <div>
+                    <h5 v-if="rank == 1" style="color: gold;">1st Place</h5>
+                    <h5 v-if="rank == 2" style="color: silver;">2nd Place</h5>
+                    <h5 v-if="rank == 3" style="color: brown;">3rd Place</h5>
+                    <br>
                     <p>{{ genres[0] }}</p>
                     <p>{{ followers }} followers</p>
-                    <n-rate :id="name" />
+                    <!--<n-rate :id="name" />-->
                 </div>
             </div>
         </n-card>
